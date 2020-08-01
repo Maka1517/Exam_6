@@ -11,6 +11,7 @@
     <h2>{{ guest.name }}</h2>
     <h2>{{ guest.email }}</h2>
     <p>{{ guest.text }}</p>
+    <p><a href="{% url 'guest_update' guest.pk %}">Update</a></p>
     <br>
 {% endfor %}
 
