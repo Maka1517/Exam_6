@@ -1,10 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'base.html' %}
 
-</body>
-</html>
+{% block title %}Delete{% endblock %}
+
+
+
+{% block content %}
+    <h1>Вы уверены, что хотите удалить гостя "{{ guest.name }}"?</h1>
+    <p>Данные: {{ guest.email }} | {{ guest.created_at }}</p>
+    <form action="{% url "guest_delete" guest.pk %}" method="post">
+        {% csrf_token %}
+        <p><input type="submit" value="Да"></p>
+        <p><a href="{% url 'index' %}">Отмена</a></p>
+    </form>
+    <h3>Содержимое текста: </h3>
+    <p>{{ guest.text }}</p>
+{% endblock %}

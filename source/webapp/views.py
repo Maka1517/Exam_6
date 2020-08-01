@@ -7,7 +7,7 @@ from django.http import HttpResponseNotAllowed
 def index_view(request):
     is_admin = request.GET.get('is_admin', None)
     if is_admin:
-        data = Guest.objects.all()
+        data = Guest.objects.all().order_by('-created_at')
     else:
         data = Guest.objects.filter(status='active')
     return render(request, 'index.html', context={
